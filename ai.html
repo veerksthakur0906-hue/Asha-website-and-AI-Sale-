@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Tools, Gesture Control &amp; Lie Detectors — NexTech Labs</title>
+<meta name="description" content="AI sellers, hand gesture controllers and truth/lie detectors, ₹100 to ₹1,000." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="page">
+
+  <!-- ============ NAV ============ -->
+  <header class="nav-shell sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="24" height="24" stroke="#22D3EE" stroke-width="1.5"/>
+          <path d="M8 8L18 18M18 8L8 18" stroke="#A78BFA" stroke-width="1.5"/>
+        </svg>
+        <span class="font-display text-lg font-semibold tracking-tight">NexTech<span class="text-cyan">.Labs</span></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-7">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="websites.html" class="nav-link">Websites</a>
+        <a href="ai.html" class="nav-link is-active">AI &amp; Gesture</a>
+        <a href="other.html" class="nav-link">Other Tech</a>
+        <a href="custom.html" class="nav-link">Custom Software</a>
+      </nav>
+      <button onclick="toggleMobileNav()" class="md:hidden btn" aria-label="Toggle menu">☰</button>
+    </div>
+    <div id="mobile-nav" class="hidden md:hidden border-t border-hud px-5 py-3 flex flex-col gap-3">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="websites.html" class="nav-link">Websites</a>
+      <a href="ai.html" class="nav-link is-active">AI &amp; Gesture</a>
+      <a href="other.html" class="nav-link">Other Tech</a>
+      <a href="custom.html" class="nav-link">Custom Software</a>
+    </div>
+  </header>
+
+  <!-- ============ HEADER BANNER ============ -->
+  <section class="max-w-6xl mx-auto px-5 pt-12 pb-8">
+    <p class="font-mono text-xs text-cyan mb-3">CATALOG / AI &amp; DETECTION TECH</p>
+    <h1 class="font-display text-3xl md:text-4xl font-semibold mb-3">Tools that sense, sort and answer</h1>
+    <p class="text-dim max-w-xl">AI sellers that write and price your listings, gesture controllers that replace your mouse, and lie-detector kits for measuring stress response. ₹100 to ₹1,000.</p>
+  </section>
+
+  <!-- ============ FILTER STRIP ============ -->
+  <section class="max-w-6xl mx-auto px-5 pb-6 flex flex-wrap gap-2" id="filter-strip">
+    <button class="btn filter-btn" data-filter="all">All</button>
+    <button class="btn filter-btn" data-filter="AI Tool">AI Tools</button>
+    <button class="btn filter-btn" data-filter="AI Seller">AI Sellers</button>
+    <button class="btn filter-btn" data-filter="Gesture">Hand Gesture</button>
+    <button class="btn filter-btn" data-filter="Detector">Truth/Lie Detectors</button>
+  </section>
+
+  <!-- ============ PRODUCT GRID ============ -->
+  <section class="max-w-6xl mx-auto px-5 pb-20">
+    <div id="product-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </section>
+
+  <!-- ============ HOW DETECTION WORKS ============ -->
+  <section class="max-w-6xl mx-auto px-5 pb-20 grid md:grid-cols-3 gap-5">
+    <div class="bracket-panel">
+      <p class="font-mono text-xs text-orange mb-2">01</p>
+      <h3 class="font-display text-base mb-2">Sensor input</h3>
+      <p class="text-dim text-sm">Camera or wearable sensor captures motion, voice, or galvanic skin response.</p>
+    </div>
+    <div class="bracket-panel">
+      <p class="font-mono text-xs text-orange mb-2">02</p>
+      <h3 class="font-display text-base mb-2">Model inference</h3>
+      <p class="text-dim text-sm">An on-device or lightweight cloud model classifies the signal in real time.</p>
+    </div>
+    <div class="bracket-panel">
+      <p class="font-mono text-xs text-orange mb-2">03</p>
+      <h3 class="font-display text-base mb-2">Actionable output</h3>
+      <p class="text-dim text-sm">Result is mapped to a gesture command, a confidence score, or an alert.</p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="border-t border-hud">
+    <div class="max-w-6xl mx-auto px-5 py-10 text-sm text-dim flex flex-col md:flex-row justify-between gap-4">
+      <p>© NexTech Labs. Detection accuracy varies by lighting and sensor placement.</p>
+      <div class="flex gap-5">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="websites.html" class="nav-link">Websites</a>
+        <a href="custom.html" class="nav-link">Custom Software</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ============ PAYMENT MODAL (shared) ============ -->
+<div id="payment-modal" class="modal-overlay hidden">
+  <div class="modal-box bracket-panel">
+    <button onclick="closePaymentModal()" class="absolute top-3 right-3 text-dim hover:text-white" aria-label="Close">✕</button>
+    <p class="font-mono text-xs text-dim mb-1">SCAN TO PAY</p>
+    <h3 id="modal-product-name" class="font-display text-lg mb-1">Product name</h3>
+    <p id="modal-product-price" class="price-tag mb-4">₹0</p>
+    <div class="bg-white p-3 w-fit mx-auto mb-4">
+      <img id="modal-qr-img" src="" alt="Payment QR code" width="180" height="180" />
+    </div>
+    <p id="modal-status" class="status-pending text-sm text-center mb-4 min-h-[2.5rem]">Scan the code, or use any UPI app, then confirm below.</p>
+    <button id="verify-btn" onclick="verifyPayment()" class="btn btn-primary w-full">I've completed the payment</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+  const products = [
+    { id: "gest-01", name: "AirTouch Gesture Controller", category: "Gesture", price: 799, desc: "Webcam-based hand tracking that maps swipes and pinches to OS shortcuts." },
+    { id: "gest-02", name: "PalmNav Cursor Kit", category: "Gesture", price: 549, desc: "Lightweight gesture-to-cursor mapper for presentations and kiosks." },
+    { id: "lie-01", name: "PulseTruth Lie Detector Kit", category: "Detector", price: 899, desc: "Voice-stress and pulse analysis with a live confidence read-out." },
+    { id: "lie-02", name: "MicroTell Desktop Detector", category: "Detector", price: 649, desc: "Webcam micro-expression detector flags stress spikes during calls." },
+    { id: "ai-01", name: "PromptForge AI Toolkit", category: "AI Tool", price: 399, desc: "Prompt-chaining utility with reusable templates for common workflows." },
+    { id: "ai-02", name: "ListWise AI Seller", category: "AI Seller", price: 499, desc: "Auto-writes product titles, descriptions and price suggestions." },
+    { id: "ai-03", name: "ChatDesk AI Support Bot", category: "AI Tool", price: 749, desc: "Drop-in support widget that answers FAQs from your own documents." },
+    { id: "ai-04", name: "BidBuddy AI Seller", category: "AI Seller", price: 349, desc: "Suggests optimal marketplace pricing based on demand signals." },
+    { id: "gest-03", name: "SwipeCast Media Remote", category: "Gesture", price: 299, desc: "Control slideshows and media playback with air gestures." },
+    { id: "lie-03", name: "TruthLine Interview Aid", category: "Detector", price: 999, desc: "Structured interview companion with real-time deception indicators." },
+  ];
+
+  let activeFilter = "all";
+
+  function renderProducts() {
+    const grid = document.getElementById("product-grid");
+    const visible = activeFilter === "all" ? products : products.filter(p => p.category === activeFilter);
+    grid.innerHTML = visible.map(p => `
+      <div class="bracket-panel flex flex-col">
+        <p class="font-mono text-xs text-violet mb-2">${p.category}</p>
+        <h3 class="font-display text-lg mb-2">${p.name}</h3>
+        <p class="text-dim text-sm mb-4">${p.desc}</p>
+        <p class="price-tag mb-4">₹${p.price}</p>
+        <div class="mt-auto flex items-center justify-between gap-3">
+          <span id="locked-${p.id}" class="badge-locked">LOCKED</span>
+          <span id="unlocked-${p.id}" class="badge-locked badge-unlocked hidden">UNLOCKED</span>
+          <div class="flex gap-2">
+            <button id="pay-${p.id}" class="btn btn-pay" onclick='openPaymentModal(${JSON.stringify({id:p.id,name:p.name,price:p.price})})'>Pay ₹${p.price}</button>
+            <button id="download-${p.id}" class="btn btn-success hidden" disabled onclick="downloadFile('${p.id}', '${p.name}')">Download File</button>
+          </div>
+        </div>
+      </div>
+    `).join("");
+    refreshAllLocks(visible.map(p => p.id));
+  }
+
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeFilter = btn.dataset.filter;
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("btn-primary"));
+      btn.classList.add("btn-primary");
+      renderProducts();
+    });
+  });
+
+  document.querySelector('.filter-btn[data-filter="all"]').classList.add("btn-primary");
+  renderProducts();
+</script>
+</body>
+</html>

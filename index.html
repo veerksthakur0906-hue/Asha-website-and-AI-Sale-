@@ -1,103 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="uXGGYhGSxlWbCNAzfm-EgNxjI5ocLeOuEd7pu_9ZGZQ" />
-    <title>AshaTech Enterprise | Home</title>
-    <style>
-        :root {
-            --bg-color: #05050a;
-            --card-bg: #0f1019;
-            --accent-color: #6366f1;
-            --accent-glow: rgba(99, 102, 241, 0.4);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #1e293b;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; }
-        header { background: rgba(15, 16, 25, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; }
-        .logo { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
-        nav ul { display: flex; gap: 2rem; list-style: none; }
-        nav ul li a { color: var(--text-muted); text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
-        nav ul li a:hover, nav ul li a.active { color: var(--accent-color); }
-        .container { max-width: 1400px; margin: 0 auto; padding: 2rem 5%; }
-        .hero { text-align: center; padding: 4rem 1rem; background: radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%); }
-        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
-        .hero p { color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem auto; }
-        .section-title { font-size: 2rem; margin-bottom: 2rem; font-weight: 700; border-left: 4px solid var(--accent-color); padding-left: 1rem; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
-        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent-color); box-shadow: 0 10px 30px var(--accent-glow); }
-        .card-img-placeholder { width: 100%; height: 160px; background: linear-gradient(45deg, #1e293b, #0f1019); border-radius: 10px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-weight: 600; border: 1px dashed var(--border-color); }
-        .card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
-        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
-        .card-footer { display: flex; justify-content: space-between; align-items: center; }
-        .price { font-size: 1.25rem; font-weight: 700; color: #38bdf8; }
-        .btn { background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; border: none; padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: 600; cursor: pointer; text-decoration: none; }
-        .btn:hover { opacity: 0.9; }
-        footer { text-align: center; padding: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); margin-top: 4rem; }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NexTech Labs — Futuristic Tech, AI Tools &amp; Custom Software</title>
+<meta name="description" content="Hand gesture controllers, lie detectors, AI tools and custom software — every deliverable priced between ₹100 and ₹1,000." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <a href="index.html" class="logo">AshaTech Enterprise</a>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="products.html">Products & AI</a></li>
-                <li><a href="custom.html">Custom Software (₹100)</a></li>
-            </ul>
-        </nav>
-    </header>
+<div id="page">
 
-    <section class="hero">
-        <h1>Enterprise Grade AI & Business Web Solutions</h1>
-        <p>Explore elite AI models and professional ready-to-use business website templates with instant source code access.</p>
-    </section>
+  <!-- ============ NAV ============ -->
+  <header class="nav-shell sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="24" height="24" stroke="#22D3EE" stroke-width="1.5"/>
+          <path d="M8 8L18 18M18 8L8 18" stroke="#A78BFA" stroke-width="1.5"/>
+        </svg>
+        <span class="font-display text-lg font-semibold tracking-tight">NexTech<span class="text-cyan">.Labs</span></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-7">
+        <a href="index.html" class="nav-link is-active">Home</a>
+        <a href="websites.html" class="nav-link">Websites</a>
+        <a href="ai.html" class="nav-link">AI &amp; Gesture</a>
+        <a href="other.html" class="nav-link">Other Tech</a>
+        <a href="custom.html" class="nav-link">Custom Software</a>
+      </nav>
+      <button onclick="toggleMobileNav()" class="md:hidden btn" aria-label="Toggle menu">☰</button>
+    </div>
+    <div id="mobile-nav" class="hidden md:hidden border-t border-hud px-5 py-3 flex flex-col gap-3">
+      <a href="index.html" class="nav-link is-active">Home</a>
+      <a href="websites.html" class="nav-link">Websites</a>
+      <a href="ai.html" class="nav-link">AI &amp; Gesture</a>
+      <a href="other.html" class="nav-link">Other Tech</a>
+      <a href="custom.html" class="nav-link">Custom Software</a>
+    </div>
+  </header>
 
-    <div class="container">
-        <h2 class="section-title">Featured Solutions</h2>
-        <div class="grid">
-            <div class="card">
-                <div>
-                    <div class="card-img-placeholder">Advanced AI Model</div>
-                    <h3>Jarvis AI Core</h3>
-                    <p>The ultimate flagship artificial intelligence core engineered for supreme multitasking, automation, and deep cognitive processing.</p>
-                </div>
-                <div class="card-footer">
-                    <span class="price">₹1,000</span>
-                    <a href="products.html" class="btn">Get Source Code</a>
-                </div>
-            </div>
-            <div class="card">
-                <div>
-                    <div class="card-img-placeholder">Business Website</div>
-                    <h3>Elite Dental Clinic Website</h3>
-                    <p>Modern, responsive medical website template featuring appointment booking layouts, patient care modules, and clean aesthetics.</p>
-                </div>
-                <div class="card-footer">
-                    <span class="price">₹200</span>
-                    <a href="products.html" class="btn">Get Source Code</a>
-                </div>
-            </div>
-            <div class="card">
-                <div>
-                    <div class="card-img-placeholder">Business Website</div>
-                    <h3>Aroma Brew Coffee Shop</h3>
-                    <p>Warm, elegant cafe website layout designed for online menu showcase, table reservations, and customer reviews.</p>
-                </div>
-                <div class="card-footer">
-                    <span class="price">₹100</span>
-                    <a href="products.html" class="btn">Get Source Code</a>
-                </div>
-            </div>
-        </div>
+  <!-- ============ HERO ============ -->
+  <section class="max-w-6xl mx-auto px-5 pt-14 pb-16 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <p class="font-mono text-xs text-cyan mb-4">SIGNAL ACQUIRED — CATALOG ONLINE</p>
+      <h1 class="font-display text-4xl md:text-5xl font-semibold leading-tight mb-5">
+        Hardware and software<br />that reads the room<br /><span class="text-violet">before you say a word.</span>
+      </h1>
+      <p class="text-dim text-base md:text-lg max-w-md mb-8">
+        Gesture controllers, deception-detection kits, AI utilities and site templates —
+        every single item on this catalog is priced between ₹100 and ₹1,000. No subscriptions, no upsells.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="ai.html" class="btn btn-primary">Explore AI &amp; Gesture Tech</a>
+        <a href="custom.html" class="btn">Commission Custom Software</a>
+      </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 AshaTech Enterprise Solutions. All Rights Reserved.</p>
-    </footer>
+    <div class="relative reticle-frame">
+      <div class="bracket-panel overflow-hidden aspect-square flex items-center justify-center relative">
+        <div class="scan-sweep"></div>
+        <svg viewBox="0 0 240 240" class="w-4/5 h-4/5" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="70" stroke="#22D3EE" stroke-width="1" opacity="0.5"/>
+          <circle cx="120" cy="120" r="95" stroke="#A78BFA" stroke-width="1" opacity="0.3" stroke-dasharray="4 6"/>
+          <path d="M120 30V50M120 190V210M30 120H50M190 120H210" stroke="#22D3EE" stroke-width="1.5"/>
+          <path d="M70 90C70 90 90 60 120 60C150 60 170 90 170 90" stroke="#A78BFA" stroke-width="1.5"/>
+          <path d="M75 150C90 175 150 175 165 150" stroke="#22D3EE" stroke-width="1.5"/>
+          <circle cx="120" cy="120" r="6" fill="#FF7A45"/>
+        </svg>
+        <span class="absolute bottom-3 left-3 font-mono text-[10px] text-dim">GESTURE_MODULE.trace</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CATEGORY BANNERS ============ -->
+  <section class="max-w-6xl mx-auto px-5 pb-16 grid md:grid-cols-4 gap-4">
+    <a href="websites.html" class="bracket-panel block hover:-translate-y-0.5">
+      <p class="font-mono text-xs text-orange mb-2">₹100 – ₹1,000</p>
+      <h3 class="font-display text-lg mb-1">Website Templates</h3>
+      <p class="text-dim text-sm">Ready-to-launch storefronts, portfolios and landing pages.</p>
+    </a>
+    <a href="ai.html" class="bracket-panel block hover:-translate-y-0.5">
+      <p class="font-mono text-xs text-orange mb-2">₹100 – ₹1,000</p>
+      <h3 class="font-display text-lg mb-1">AI Tools &amp; Gesture Control</h3>
+      <p class="text-dim text-sm">AI sellers, hand-gesture controllers, truth/lie detectors.</p>
+    </a>
+    <a href="other.html" class="bracket-panel block hover:-translate-y-0.5">
+      <p class="font-mono text-xs text-orange mb-2">₹100 – ₹1,000</p>
+      <h3 class="font-display text-lg mb-1">Other Tech</h3>
+      <p class="text-dim text-sm">Digital assets and miscellaneous hardware kits.</p>
+    </a>
+    <a href="custom.html" class="bracket-panel block hover:-translate-y-0.5">
+      <p class="font-mono text-xs text-orange mb-2">₹50 + ₹50</p>
+      <h3 class="font-display text-lg mb-1">Custom Software</h3>
+      <p class="text-dim text-sm">Name it, get a quote, pay in two stages.</p>
+    </a>
+  </section>
+
+  <!-- ============ FEATURED PRODUCTS ============ -->
+  <section class="max-w-6xl mx-auto px-5 pb-20">
+    <div class="flex items-baseline justify-between mb-6">
+      <h2 class="font-display text-2xl">Featured this cycle</h2>
+      <span class="font-mono text-xs text-dim">3 OF 24 ITEMS</span>
+    </div>
+    <div id="featured-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="border-t border-hud">
+    <div class="max-w-6xl mx-auto px-5 py-10 grid md:grid-cols-3 gap-6 text-sm">
+      <div>
+        <p class="font-display text-lg mb-2">NexTech<span class="text-cyan">.Labs</span></p>
+        <p class="text-dim">Small-batch tech tools, built and sold direct. Every price stays between ₹100 and ₹1,000.</p>
+      </div>
+      <div>
+        <p class="font-mono text-xs text-dim mb-3">CATALOG</p>
+        <ul class="space-y-2">
+          <li><a href="websites.html" class="nav-link">Website Templates</a></li>
+          <li><a href="ai.html" class="nav-link">AI &amp; Gesture Tech</a></li>
+          <li><a href="other.html" class="nav-link">Other Tech</a></li>
+          <li><a href="custom.html" class="nav-link">Custom Software</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-mono text-xs text-dim mb-3">PAYMENTS</p>
+        <p class="text-dim">Payments are simulated via UPI QR for this demo storefront. Downloads unlock only after verification.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ============ PAYMENT MODAL (shared) ============ -->
+<div id="payment-modal" class="modal-overlay hidden">
+  <div class="modal-box bracket-panel">
+    <button onclick="closePaymentModal()" class="absolute top-3 right-3 text-dim hover:text-white" aria-label="Close">✕</button>
+    <p class="font-mono text-xs text-dim mb-1">SCAN TO PAY</p>
+    <h3 id="modal-product-name" class="font-display text-lg mb-1">Product name</h3>
+    <p id="modal-product-price" class="price-tag mb-4">₹0</p>
+    <div class="bg-white p-3 w-fit mx-auto mb-4">
+      <img id="modal-qr-img" src="" alt="Payment QR code" width="180" height="180" />
+    </div>
+    <p id="modal-status" class="status-pending text-sm text-center mb-4 min-h-[2.5rem]">Scan the code, or use any UPI app, then confirm below.</p>
+    <button id="verify-btn" onclick="verifyPayment()" class="btn btn-primary w-full">I've completed the payment</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+  const featuredProducts = [
+    { id: "gest-01", name: "AirTouch Gesture Controller", price: 799, tag: "AI & Gesture", href: "ai.html" },
+    { id: "lie-01", name: "PulseTruth Lie Detector Kit", price: 899, tag: "AI & Gesture", href: "ai.html" },
+    { id: "web-03", name: "Orbit Portfolio Template", price: 349, tag: "Websites", href: "websites.html" },
+  ];
+
+  function renderFeatured() {
+    const grid = document.getElementById("featured-grid");
+    grid.innerHTML = featuredProducts.map(p => `
+      <div class="bracket-panel flex flex-col">
+        <p class="font-mono text-xs text-violet mb-2">${p.tag}</p>
+        <h3 class="font-display text-lg mb-2">${p.name}</h3>
+        <p class="price-tag mb-4">₹${p.price}</p>
+        <div class="mt-auto flex items-center justify-between gap-3">
+          <span id="locked-${p.id}" class="badge-locked">LOCKED</span>
+          <span id="unlocked-${p.id}" class="badge-locked badge-unlocked hidden">UNLOCKED</span>
+          <div class="flex gap-2">
+            <button id="pay-${p.id}" class="btn btn-pay" onclick='openPaymentModal(${JSON.stringify({id:p.id,name:p.name,price:p.price})})'>Pay ₹${p.price}</button>
+            <button id="download-${p.id}" class="btn btn-success hidden" disabled onclick="downloadFile('${p.id}', '${p.name}')">Download File</button>
+          </div>
+        </div>
+        <a href="${p.href}" class="text-xs text-dim hover:text-cyan mt-3 inline-block">View category →</a>
+      </div>
+    `).join("");
+    refreshAllLocks(featuredProducts.map(p => p.id));
+  }
+
+  renderFeatured();
+</script>
 </body>
 </html>
