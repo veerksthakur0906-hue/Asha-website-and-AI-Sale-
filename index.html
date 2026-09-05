@@ -96,26 +96,6 @@
             margin: 0 auto 2rem auto;
         }
 
-        .search-bar {
-            width: 100%;
-            max-width: 500px;
-            padding: 0.9rem 1.5rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 50px;
-            color: white;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s ease;
-            margin: 0 auto 3rem auto;
-            display: block;
-        }
-
-        .search-bar:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
         .section-title {
             font-size: 2rem;
             margin-bottom: 2rem;
@@ -160,14 +140,6 @@
             color: var(--text-muted);
             font-weight: 600;
             border: 1px dashed var(--border-color);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .card-img-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         .card h3 {
@@ -218,7 +190,6 @@
             display: block;
         }
 
-        /* Custom Software Booking Form Styling */
         .custom-form-container {
             max-width: 600px;
             margin: 0 auto;
@@ -286,8 +257,7 @@
         <nav>
             <ul>
                 <li><a onclick="switchPage('home')" id="nav-home" class="active">Home</a></li>
-                <li><a onclick="switchPage('ai-models')" id="nav-ai-models">AI Models (50+)</a></li>
-                <li><a onclick="switchPage('systems')" id="nav-systems">Systems & Utilities</a></li>
+                <li><a onclick="switchPage('products')" id="nav-products">Products & AI</a></li>
                 <li><a onclick="switchPage('custom')" id="nav-custom">Custom Software (₹50)</a></li>
             </ul>
         </nav>
@@ -296,35 +266,21 @@
     <!-- HOME PAGE -->
     <div id="page-home" class="page-view active">
         <section class="hero">
-            <h1>Enterprise Grade AI & Utilities Hub</h1>
-            <p>Access over 50+ cutting-edge AI Models and 50+ high-performance System Utilities with 100% complete source code delivery.</p>
-            <input type="text" id="globalSearch" class="search-bar" placeholder="Search across all 100+ tools and models..." onkeyup="filterAllContent()">
+            <h1>Enterprise Grade AI & Business Web Solutions</h1>
+            <p>Explore elite AI models and professional ready-to-use business website templates with 100% complete source code delivery.</p>
         </section>
 
         <div class="container">
-            <h2 class="section-title">Featured AI Models</h2>
-            <div class="grid" id="homeAiGrid"></div>
-
-            <h2 class="section-title">Featured Systems & Utilities</h2>
-            <div class="grid" id="homeSystemGrid"></div>
+            <h2 class="section-title">Featured Solutions</h2>
+            <div class="grid" id="homeGrid"></div>
         </div>
     </div>
 
-    <!-- AI MODELS PAGE -->
-    <div id="page-ai-models" class="page-view">
+    <!-- PRODUCTS & AI PAGE -->
+    <div id="page-products" class="page-view">
         <div class="container" style="padding-top: 3rem;">
-            <h2 class="section-title">All 50+ Advanced AI Models</h2>
-            <input type="text" id="aiSearch" class="search-bar" placeholder="Filter AI models by name..." onkeyup="filterAiModels()">
-            <div class="grid" id="fullAiGrid"></div>
-        </div>
-    </div>
-
-    <!-- SYSTEMS & UTILITIES PAGE -->
-    <div id="page-systems" class="page-view">
-        <div class="container" style="padding-top: 3rem;">
-            <h2 class="section-title">All Systems & Developer Utilities</h2>
-            <input type="text" id="systemSearch" class="search-bar" placeholder="Filter systems by name..." onkeyup="filterSystemModels()">
-            <div class="grid" id="fullSystemGrid"></div>
+            <h2 class="section-title">All Exclusive Products & AI Models</h2>
+            <div class="grid" id="fullGrid"></div>
         </div>
     </div>
 
@@ -360,65 +316,57 @@
     </footer>
 
     <script>
-        // Mock data generator for 50+ AI Models & 50+ Systems
-        const aiModels = [];
-        for (let i = 1; i <= 52; i++) {
-            aiModels.push({
-                id: i,
-                name: `Asha AI Core Model v${i}.0`,
-                desc: `High performance production neural model engineered for advanced machine processing task #${i}.`,
-                price: `₹${99 + (i * 10)}`
-            });
-        }
-
-        const systemUtilities = [];
-        for (let i = 1; i <= 52; i++) {
-            systemUtilities.push({
-                id: i,
-                name: `Enterprise System Utility #${i}`,
-                desc: `Optimized system handler, security module, or developer automation utility package #${i}.`,
-                price: `₹${149 + (i * 10)}`
-            });
-        }
+        // Exact 6 products as requested
+        const products = [
+            {
+                id: 1,
+                name: "Jarvis AI Core",
+                category: "Advanced AI Model",
+                desc: "The ultimate flagship artificial intelligence core engineered for supreme multitasking, automation, and deep cognitive processing.",
+                price: "₹4,999"
+            },
+            {
+                id: 2,
+                name: "Friday AI Assistant",
+                category: "Smart Assistant AI",
+                desc: "High-speed personal tactical assistant built for seamless workflow management, smart scheduling, and data analysis.",
+                price: "₹2,999"
+            },
+            {
+                id: 3,
+                name: "Ultron Neural System",
+                category: "Neural Network AI",
+                desc: "Autonomous defense and automated logic computation model designed for high-load server environments.",
+                price: "₹1,499"
+            },
+            {
+                id: 4,
+                name: "Elite Dental Clinic Website",
+                category: "Business Website",
+                desc: "Modern, responsive medical website template featuring appointment booking layouts, patient care modules, and clean aesthetics.",
+                price: "₹999"
+            },
+            {
+                id: 5,
+                name: "PowerFit Gym & Fitness Hub",
+                category: "Business Website",
+                desc: "High-energy fitness studio and gym platform template complete with trainer schedules, membership plans, and workout logs.",
+                price: "₹999"
+            },
+            {
+                id: 6,
+                name: "Aroma Brew Coffee Shop",
+                category: "Business Website",
+                desc: "Warm, elegant cafe website layout designed for online menu showcase, table reservations, and customer reviews.",
+                price: "₹999"
+            }
+        ];
 
         function renderGrids() {
-            // Home AI Grid (First 4)
-            const homeAi = aiModels.slice(0, 4).map(item => `
+            const htmlContent = products.map(item => `
                 <div class="card">
                     <div>
-                        <div class="card-img-placeholder">AI Model Preview</div>
-                        <h3>${item.name}</h3>
-                        <p>${item.desc}</p>
-                    </div>
-                    <div class="card-footer">
-                        <span class="price">${item.price}</span>
-                        <a href="#buy" onclick="alert('Instant Source Code Download Unlocked for ${item.name}!')" class="btn">Get Source Code</a>
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById('homeAiGrid').innerHTML = homeAi;
-
-            // Home System Grid (First 4)
-            const homeSys = systemUtilities.slice(0, 4).map(item => `
-                <div class="card">
-                    <div>
-                        <div class="card-img-placeholder">System Preview</div>
-                        <h3>${item.name}</h3>
-                        <p>${item.desc}</p>
-                    </div>
-                    <div class="card-footer">
-                        <span class="price">${item.price}</span>
-                        <a href="#buy" onclick="alert('Instant Source Code Download Unlocked for ${item.name}!')" class="btn">Get Source Code</a>
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById('homeSystemGrid').innerHTML = homeSys;
-
-            // Full AI Grid
-            document.getElementById('fullAiGrid').innerHTML = aiModels.map(item => `
-                <div class="card">
-                    <div>
-                        <div class="card-img-placeholder">AI Model #${item.id}</div>
+                        <div class="card-img-placeholder">${item.category}</div>
                         <h3>${item.name}</h3>
                         <p>${item.desc}</p>
                     </div>
@@ -429,20 +377,8 @@
                 </div>
             `).join('');
 
-            // Full System Grid
-            document.getElementById('fullSystemGrid').innerHTML = systemUtilities.map(item => `
-                <div class="card">
-                    <div>
-                        <div class="card-img-placeholder">Utility #${item.id}</div>
-                        <h3>${item.name}</h3>
-                        <p>${item.desc}</p>
-                    </div>
-                    <div class="card-footer">
-                        <span class="price">${item.price}</span>
-                        <a href="#buy" onclick="alert('Instant Source Code Download Unlocked for ${item.name}!')" class="btn">Get Source Code</a>
-                    </div>
-                </div>
-            `).join('');
+            document.getElementById('homeGrid').innerHTML = htmlContent;
+            document.getElementById('fullGrid').innerHTML = htmlContent;
         }
 
         function switchPage(pageId) {
@@ -458,55 +394,12 @@
             e.preventDefault();
             const name = document.getElementById('custName').value;
             const phone = document.getElementById('custPhone').value;
-            const desc = document.getElementById('custDesc').value;
             
-            // Dynamic UPI Intent Generation for ₹50
-            const upiId = "merchant@upi"; // Replace with actual merchant UPI ID later
+            const upiId = "merchant@upi";
             const upiUrl = `upi://pay?pa=${upiId}&am=50.00&cu=INR&tn=CustomSoftwareBooking_${encodeURIComponent(name)}`;
             
             alert(`Redirecting to UPI Payment App for ₹50 Advance Booking...\n\nName: ${name}\nPhone: ${phone}`);
             window.location.href = upiUrl;
-        }
-
-        function filterAllContent() {
-            const query = document.getElementById('globalSearch').value.toLowerCase();
-            // Basic filtering hook across home elements
-        }
-
-        function filterAiModels() {
-            const query = document.getElementById('aiSearch').value.toLowerCase();
-            const filtered = aiModels.filter(m => m.name.toLowerCase().includes(query) || m.desc.toLowerCase().includes(query));
-            document.getElementById('fullAiGrid').innerHTML = filtered.map(item => `
-                <div class="card">
-                    <div>
-                        <div class="card-img-placeholder">AI Model #${item.id}</div>
-                        <h3>${item.name}</h3>
-                        <p>${item.desc}</p>
-                    </div>
-                    <div class="card-footer">
-                        <span class="price">${item.price}</span>
-                        <a href="#buy" onclick="alert('Instant Source Code Download Unlocked for ${item.name}!')" class="btn">Get Source Code</a>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function filterSystemModels() {
-            const query = document.getElementById('systemSearch').value.toLowerCase();
-            const filtered = systemUtilities.filter(m => m.name.toLowerCase().includes(query) || m.desc.toLowerCase().includes(query));
-            document.getElementById('fullSystemGrid').innerHTML = filtered.map(item => `
-                <div class="card">
-                    <div>
-                        <div class="card-img-placeholder">Utility #${item.id}</div>
-                        <h3>${item.name}</h3>
-                        <p>${item.desc}</p>
-                    </div>
-                    <div class="card-footer">
-                        <span class="price">${item.price}</span>
-                        <a href="#buy" onclick="alert('Instant Source Code Download Unlocked for ${item.name}!')" class="btn">Get Source Code</a>
-                    </div>
-                </div>
-            `).join('');
         }
 
         window.onload = renderGrids;
