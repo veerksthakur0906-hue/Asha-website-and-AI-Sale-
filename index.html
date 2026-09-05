@@ -3,290 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AshaTech Enterprise | Global Software & AI Marketplace</title>
+    <meta name="google-site-verification" content="uXGGYhGSxlWbCNAzfm-EgNxjI5ocLeOuEd7pu_9ZGZQ" />
+    <title>AshaTech Enterprise | Global Software & AI Solutions</title>
     <style>
         :root {
-            --bg-color: #05070b;
-            --surface-color: #0f172a;
-            --surface-glass: rgba(15, 23, 42, 0.9);
+            --bg-color: #05050a;
+            --card-bg: #0f1019;
+            --accent-color: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.4);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
-            --accent: #a855f7;
-            --success: #22c55e;
-            --warning: #f59e0b;
-            --border: #1e293b;
-            --radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-color: #1e293b;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Navigation */
-        nav {
-            background: var(--surface-glass);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        header {
+            background: rgba(15, 16, 25, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
         }
 
-        .nav-logo {
+        .logo {
             font-size: 1.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 0.4rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .nav-links button {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 0.5rem 0.9rem;
-            border-radius: 8px;
             cursor: pointer;
-            transition: var(--transition);
         }
 
-        .nav-links button:hover, .nav-links button.active {
-            color: var(--text-main);
-            background: rgba(99, 102, 241, 0.15);
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
         }
 
-        .custom-nav-btn {
-            background: linear-gradient(135deg, var(--warning), #d97706) !important;
-            color: white !important;
-            font-weight: 700 !important;
+        nav ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            cursor: pointer;
         }
 
-        /* Header Hero */
-        header {
-            background: radial-gradient(circle at top center, #1e1b4b 0%, var(--bg-color) 70%);
-            padding: 4rem 1rem 2.5rem;
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+        }
+
+        .hero {
             text-align: center;
-            border-bottom: 1px solid var(--border);
+            padding: 4rem 1rem;
+            background: radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
         }
 
-        header h1 {
-            font-size: 2.8rem;
+        .hero h1 {
+            font-size: 3rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            letter-spacing: -1px;
+            letter-spacing: -0.025em;
         }
 
-        header p {
+        .hero p {
             color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 650px;
-            margin: 0 auto;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
         }
 
-        /* Container & Layout */
-        .main-container {
-            max-width: 1300px;
-            margin: 2.5rem auto;
-            padding: 0 2rem;
-        }
-
-        .page-content {
-            display: none;
-            animation: fadeIn 0.3s ease-in-out forwards;
-        }
-
-        .page-content.active {
+        .search-bar {
+            width: 100%;
+            max-width: 500px;
+            padding: 0.9rem 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            margin: 0 auto 3rem auto;
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+        .search-bar:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        .section-header {
-            margin-bottom: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .section-header h2 {
+        .section-title {
             font-size: 2rem;
+            margin-bottom: 2rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
         }
-
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .search-filter {
-            background: var(--surface-color);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            color: white;
-            font-size: 0.9rem;
-            width: 260px;
-        }
-        .search-filter:focus { outline: none; border-color: var(--primary); }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.75rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
         }
 
-        /* Product Cards with Visual Preview */
         .card {
-            background: var(--surface-color);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: var(--transition);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 12px 30px -8px rgba(99, 102, 241, 0.25);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px var(--accent-glow);
         }
 
-        .card-img-container {
+        .card-img-placeholder {
             width: 100%;
             height: 160px;
-            background: #1e293b;
+            background: linear-gradient(45deg, #1e293b, #0f1019);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-weight: 600;
+            border: 1px dashed var(--border-color);
             overflow: hidden;
             position: relative;
         }
 
-        .card-img-container img {
+        .card-img-placeholder img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
-            opacity: 0.85;
-        }
-
-        .card:hover .card-img-container img {
-            transform: scale(1.06);
-            opacity: 1;
-        }
-
-        .card-body {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
-        }
-
-        .card-tag {
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 0.4rem;
         }
 
         .card h3 {
-            font-size: 1.15rem;
+            font-size: 1.3rem;
             margin-bottom: 0.5rem;
         }
 
         .card p {
             color: var(--text-muted);
-            font-size: 0.88rem;
-            margin-bottom: 1.25rem;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
 
         .card-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid var(--border);
-            padding-top: 1rem;
-            margin-top: auto;
         }
 
         .price {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            color: #818cf8;
+            color: #38bdf8;
         }
 
-        /* Buttons */
         .btn {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
             color: white;
             border: none;
-            padding: 0.6rem 1.2rem;
+            padding: 0.7rem 1.2rem;
             border-radius: 8px;
-            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
-            transition: var(--transition);
+            transition: opacity 0.3s ease;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.4rem;
         }
 
         .btn:hover {
-            background-color: var(--primary-hover);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+            opacity: 0.9;
         }
 
-        .btn-success { background-color: var(--success); }
-        .btn-success:hover { background-color: #16a34a; }
+        .page-view {
+            display: none;
+        }
 
-        .btn-warning { background-color: var(--warning); color: #000; }
-        .btn-warning:hover { background-color: #d97706; }
+        .page-view.active {
+            display: block;
+        }
 
-        /* Custom Software Booking Panel */
-        .custom-panel {
-            max-width: 800px;
+        /* Custom Software Booking Form Styling */
+        .custom-form-container {
+            max-width: 600px;
             margin: 0 auto;
-            background: var(--surface-color);
-            border: 1px solid var(--border);
-            padding: 3rem;
-            border-radius: var(--radius);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .form-group {
@@ -295,472 +235,281 @@
 
         .form-group label {
             display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
             margin-bottom: 0.5rem;
-            color: var(--text-main);
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            background: var(--bg-color);
-            border: 1px solid var(--border);
-            color: white;
-            padding: 0.85rem;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--warning);
-            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
-        }
-
-        .fee-badge {
-            background: rgba(245, 158, 11, 0.15);
-            border: 1px solid var(--warning);
-            color: var(--warning);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
             font-weight: 600;
-            text-align: center;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 7, 11, 0.85);
-            backdrop-filter: blur(8px);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            padding: 1rem;
-        }
-
-        .modal-content {
-            background: var(--surface-color);
-            border: 1px solid var(--border);
-            padding: 2.5rem;
-            border-radius: var(--radius);
-            text-align: center;
-            max-width: 450px;
-            width: 100%;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.7);
-        }
-
-        .qr-box {
-            background: white;
-            padding: 1rem;
-            border-radius: 12px;
-            display: inline-block;
-            margin: 1rem 0;
-        }
-
-        .qr-box img { width: 160px; height: 160px; display: block; }
-
-        .close-modal {
-            background: transparent;
-            border: none;
             color: var(--text-muted);
-            margin-top: 1rem;
-            cursor: pointer;
-            font-size: 0.9rem;
         }
-        .close-modal:hover { color: white; }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-color);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .upi-notice {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
 
         footer {
             text-align: center;
             padding: 3rem;
+            border-top: 1px solid var(--border-color);
             color: var(--text-muted);
-            border-top: 1px solid var(--border);
-            margin-top: 5rem;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            nav { flex-direction: column; gap: 1rem; }
-            header h1 { font-size: 2.2rem; }
-            .custom-panel { padding: 1.5rem; }
+            margin-top: 4rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION BAR -->
-    <nav>
-        <div class="nav-logo">⚡ AshaTech Hub</div>
-        <div class="nav-links">
-            <button onclick="switchPage('home')" id="nav-home" class="active">Overview</button>
-            <button onclick="switchPage('ai')" id="nav-ai">50+ AI Models</button>
-            <button onclick="switchPage('other')" id="nav-other">50+ Systems & Utilities</button>
-            <button onclick="switchPage('custom')" id="nav-custom" class="custom-nav-btn">🛠️ Custom Software</button>
-        </div>
-    </nav>
-
-    <!-- HEADER BANNER -->
     <header>
-        <h1 id="headerTitle">Next-Gen Software & AI Marketplace</h1>
-        <p id="headerSubtitle">Access 50+ Enterprise AI Models, 50+ Advanced Systems with Complete Source Code Delivery.</p>
+        <div class="logo" onclick="switchPage('home')">AshaTech Enterprise</div>
+        <nav>
+            <ul>
+                <li><a onclick="switchPage('home')" id="nav-home" class="active">Home</a></li>
+                <li><a onclick="switchPage('ai-models')" id="nav-ai-models">AI Models (50+)</a></li>
+                <li><a onclick="switchPage('systems')" id="nav-systems">Systems & Utilities</a></li>
+                <li><a onclick="switchPage('custom')" id="nav-custom">Custom Software (₹50)</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="main-container">
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page-view active">
+        <section class="hero">
+            <h1>Enterprise Grade AI & Utilities Hub</h1>
+            <p>Access over 50+ cutting-edge AI Models and 50+ high-performance System Utilities with 100% complete source code delivery.</p>
+            <input type="text" id="globalSearch" class="search-bar" placeholder="Search across all 100+ tools and models..." onkeyup="filterAllContent()">
+        </section>
 
-        <!-- OVERVIEW PAGE -->
-        <div id="page-home" class="page-content active">
-            <div class="section-header">
-                <div>
-                    <h2>Welcome to AshaTech Ecosystem</h2>
-                    <p>High-performance production-ready code repositories for developers and creators.</p>
-                </div>
-            </div>
-            <div class="grid">
-                <div class="card">
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80" alt="AI Models">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            <span class="card-tag">Artificial Intelligence</span>
-                            <h3>50+ Production AI Models</h3>
-                            <p>Explore our massive inventory of fine-tuned neural models, text parsers, voice synthesizers, and vision modules with complete source code.</p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="price">From ₹99</span>
-                            <button class="btn" onclick="switchPage('ai')">Browse AI Models</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80" alt="Systems">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            <span class="card-tag">Core Systems & Tools</span>
-                            <h3>50+ Systems & Utilities</h3>
-                            <p>Includes Voice Control, Hand Gesture UI, Truth & Lie Detector, automation bots, payment gateways, and advanced script suites.</p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="price">From ₹149</span>
-                            <button class="btn" onclick="switchPage('other')">Browse Systems</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card" style="border-color: var(--warning);">
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=80" alt="Custom Dev">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            <span class="card-tag" style="color: var(--warning);">Custom Development</span>
-                            <h3>Custom Software Development</h3>
-                            <p>Have a unique project idea? Pay ₹50 advance booking fee, submit your requirements, and collaborate directly to build your custom software.</p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="price" style="color: var(--warning);">₹50 Advance</span>
-                            <button class="btn btn-warning" onclick="switchPage('custom')">Book Custom Build</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="container">
+            <h2 class="section-title">Featured AI Models</h2>
+            <div class="grid" id="homeAiGrid"></div>
+
+            <h2 class="section-title">Featured Systems & Utilities</h2>
+            <div class="grid" id="homeSystemGrid"></div>
         </div>
-
-        <!-- 50+ AI MODELS PAGE -->
-        <div id="page-ai" class="page-content">
-            <div class="section-header">
-                <div>
-                    <h2>50+ Production AI Models</h2>
-                    <p>Every AI model features distinct architectural upgrades, parameter limits, and specialized pricing.</p>
-                </div>
-                <input type="text" class="search-filter" id="searchAI" placeholder="Search AI models..." onkeyup="filterAI()">
-            </div>
-            <div class="grid" id="aiGrid">
-                <!-- Dynamically populated via JS -->
-            </div>
-        </div>
-
-        <!-- 50+ SYSTEMS & UTILITIES PAGE -->
-        <div id="page-other" class="page-content">
-            <div class="section-header">
-                <div>
-                    <h2>50+ Systems, Utilities & Interactive Tools</h2>
-                    <p>Includes Voice Navigation, Gesture Controls, Lie Detectors, and high-end enterprise utilities.</p>
-                </div>
-                <input type="text" class="search-filter" id="searchOther" placeholder="Search systems..." onkeyup="filterOther()">
-            </div>
-            <div class="grid" id="otherGrid">
-                <!-- Dynamically populated via JS -->
-            </div>
-        </div>
-
-        <!-- CUSTOM SOFTWARE PAGE -->
-        <div id="page-custom" class="page-content">
-            <div class="section-header" style="text-align: center; display: block;">
-                <h2>Custom Software & Website Development</h2>
-                <p>Submit your precise specifications for custom engineering.</p>
-            </div>
-            <div class="custom-panel">
-                <div class="fee-badge">
-                    ⚡ Advance Booking Fee: ₹50 only (Adjusted in final project quotation)
-                </div>
-                <form id="customForm" onsubmit="event.preventDefault(); openCustomCheckout();">
-                    <div class="form-group">
-                        <label>Your Full Name / Business Name</label>
-                        <input type="text" id="custName" placeholder="e.g., Asha Thakur" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Contact Phone Number (For direct discussion)</label>
-                        <input type="tel" id="custPhone" placeholder="e.g., +91 XXXXX XXXXX" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Detailed Project Requirements (What software/website do you need?)</label>
-                        <textarea id="custReq" rows="5" placeholder="Describe features, pages, functionality, or design style in detail..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-warning" style="width: 100%; padding: 1rem; font-size: 1rem;">Pay ₹50 Advance & Submit Requirements</button>
-                </form>
-            </div>
-        </div>
-
     </div>
 
-    <!-- SECURE CHECKOUT MODAL -->
-    <div id="paymentModal" class="modal">
-        <div class="modal-content">
-            <h3 id="modalTitle">Secure Complete Code Checkout</h3>
-            <div id="modalProductInfo" style="color: #818cf8; font-weight: 600; margin: 0.5rem 0 1rem 0;"></div>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Scan QR code to complete payment and instantly receive full source code files:</p>
-            <div class="qr-box">
-                <img id="dynamicQR" src="" alt="UPI QR">
+    <!-- AI MODELS PAGE -->
+    <div id="page-ai-models" class="page-view">
+        <div class="container" style="padding-top: 3rem;">
+            <h2 class="section-title">All 50+ Advanced AI Models</h2>
+            <input type="text" id="aiSearch" class="search-bar" placeholder="Filter AI models by name..." onkeyup="filterAiModels()">
+            <div class="grid" id="fullAiGrid"></div>
+        </div>
+    </div>
+
+    <!-- SYSTEMS & UTILITIES PAGE -->
+    <div id="page-systems" class="page-view">
+        <div class="container" style="padding-top: 3rem;">
+            <h2 class="section-title">All Systems & Developer Utilities</h2>
+            <input type="text" id="systemSearch" class="search-bar" placeholder="Filter systems by name..." onkeyup="filterSystemModels()">
+            <div class="grid" id="fullSystemGrid"></div>
+        </div>
+    </div>
+
+    <!-- CUSTOM SOFTWARE BOOKING PAGE -->
+    <div id="page-custom" class="page-view">
+        <div class="container" style="padding-top: 3rem;">
+            <div class="custom-form-container">
+                <h2 style="margin-bottom: 1.5rem; text-align: center;">Book Custom Software Development</h2>
+                <div class="upi-notice">
+                    <strong>Process:</strong> Fill out your requirements below and pay a nominal <strong>₹50 Advance Fee</strong> via UPI. Our team will review and contact you directly to finalize.
+                </div>
+                <form id="customBookingForm" onsubmit="handleUpiPayment(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="custName" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number / WhatsApp</label>
+                        <input type="tel" id="custPhone" class="form-control" placeholder="10-digit mobile number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Project Requirement / Description</label>
+                        <textarea id="custDesc" class="form-control" placeholder="Describe the software, website, or tool you want us to build..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; padding: 1rem; font-size: 1.1rem;">Pay ₹50 Advance & Submit Booking</button>
+                </form>
             </div>
-            <p id="upiIntentText" style="font-size: 0.85rem; font-family: monospace; color: var(--warning); margin-bottom: 1rem;"></p>
-            <div id="actionArea">
-                <button class="btn btn-success" style="width: 100%; margin-bottom: 0.5rem;" onclick="verifyPaymentSimulation()">I Have Paid — Download Complete Code</button>
-            </div>
-            <button class="close-modal" onclick="closeCheckout()">Cancel Transaction</button>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 AshaTech Enterprise Solutions. All rights reserved. Full source code delivery guaranteed.</p>
+        <p>&copy; 2026 AshaTech Enterprise Solutions. All Rights Reserved. Instant Source Code Access.</p>
     </footer>
 
     <script>
-        // --- 50+ AI MODELS DATABASE WITH ASSET PREVIEWS ---
-        const aiModelsData = [];
-        const aiPrefixes = ["Neural", "Ultra", "Omni", "Quantum", "Apex", "Matrix", "Cyber", "Smart", "Hyper", "Deep"];
-        const aiTypes = ["Text Parser", "Code Assistant", "Voice Synthesizer", "Vision Classifier", "Sentiment Analyzer", "Predictor Engine", "Summarizer Pro", "Translator Core", "Security Scanner", "Content Generator"];
-        
-        const aiImages = [
-            "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&auto=format&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80"
-        ];
-
-        for(let i = 1; i <= 50; i++) {
-            const prefix = aiPrefixes[(i - 1) % aiPrefixes.length];
-            const type = aiTypes[Math.floor((i - 1) / aiPrefixes.length) % aiTypes.length];
-            const imgUrl = aiImages[(i - 1) % aiImages.length];
-            aiModelsData.push({
-                id: `ai-${i}`,
-                name: `${prefix} AI Model v${(i % 5) + 1}.${i}`,
-                category: type,
-                price: 99 + (i * 15) % 450,
-                desc: `Advanced ${type.toLowerCase()} engineered with optimized neural weights, high token throughput, and custom tuning capabilities.`,
-                image: imgUrl
+        // Mock data generator for 50+ AI Models & 50+ Systems
+        const aiModels = [];
+        for (let i = 1; i <= 52; i++) {
+            aiModels.push({
+                id: i,
+                name: `Asha AI Core Model v${i}.0`,
+                desc: `High performance production neural model engineered for advanced machine processing task #${i}.`,
+                price: `₹${99 + (i * 10)}`
             });
         }
 
-        // --- 50+ SYSTEMS & UTILITIES DATABASE WITH ASSET PREVIEWS ---
-        const otherSystemsData = [
-            { id: 'sys-1', name: 'Voice Control Navigation System', category: 'Voice UI', price: 399, desc: 'Complete JavaScript voice recognition module to control website pages and actions via microphone commands.', image: 'https://images.unsplash.com/photo-1589254065878-42c9da997008?w=600&auto=format&fit=crop&q=80' },
-            { id: 'sys-2', name: 'Hand Gesture Control UI', category: 'Gesture AI', price: 499, desc: 'Webcam-based hand tracking interface enabling users to navigate menus and trigger buttons using hand gestures.', image: 'https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&auto=format&fit=crop&q=80' },
-            { id: 'sys-3', name: 'Biometric Truth & Lie Detector', category: 'Interactive Tool', price: 349, desc: 'Sophisticated micro-expression and behavioral text pattern analysis module with customizable output outcomes.', image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=80' },
-            { id: 'sys-4', name: 'Advanced UPI Payment Gateway Simulator', category: 'E-commerce', price: 299, desc: 'Dynamic QR code generation and direct UPI intent handler with real-time verification flow.', image: 'https://images.unsplash.com/photo-1556742049-0a67d553c253?w=600&auto=format&fit=crop&q=80' }
-        ];
-
-        const otherCategories = ["Security Suite", "Database Connector", "Automation Bot", "UI Component", "Analytics Tool", "Multimedia Engine", "PDF/Data Utility"];
-        const otherNames = ["Auth Shield", "Query Optimizer", "Task Scheduler", "Modal Manager", "Live Chart Grid", "Audio Visualizer", "CSV Exporter", "Password Generator", "Token Vault", "Notification Engine", "Drag Drop Builder", "Infinite Scroller", "Theme Switcher", "Backup Utility", "Cache Manager", "Rate Limiter", "Webhook Dispatcher", "Error Logger", "SEO Meta Builder", "Sitemap Generator", "Image Compressor", "Video Player Pro", "File Uploader", "Form Validator", "Cookie Consent Box", "Live Chat Socket", "Matrix Rain Effect", "Canvas Game Engine", "Markdown Parser", "Syntax Highlighter", "Clipboard Utility", "QR Barcode Suite", "Currency Converter", "Timezone Widget", "Weather API Module", "RSS Feed Reader", "Poll & Quiz System", "Testimonial Carousel", "FAQ Accordion Pro", "Price Matrix Component", "Countdown Timer Suite", "Analytics Dashboard Widget", "Skeleton Loader", "Breadcrumb Builder", "Kanban Board Pro"];
-
-        const sysImages = [
-            "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80"
-        ];
-
-        for(let i = 5; i <= 50; i++) {
-            const cat = otherCategories[(i - 5) % otherCategories.length];
-            const name = otherNames[(i - 5) % otherNames.length];
-            const imgUrl = sysImages[(i - 5) % sysImages.length];
-            otherSystemsData.push({
-                id: `sys-${i}`,
-                name: `${name} Pro Suite`,
-                category: cat,
-                price: 149 + (i * 20) % 350,
-                desc: `Production-ready ${cat.toLowerCase()} built with clean modular code, easy integration, and full source file access.`,
-                image: imgUrl
+        const systemUtilities = [];
+        for (let i = 1; i <= 52; i++) {
+            systemUtilities.push({
+                id: i,
+                name: `Enterprise System Utility #${i}`,
+                desc: `Optimized system handler, security module, or developer automation utility package #${i}.`,
+                price: `₹${149 + (i * 10)}`
             });
         }
 
-        // Render AI Models with Image Previews
-        function renderAIModels(data) {
-            const grid = document.getElementById('aiGrid');
-            grid.innerHTML = data.map(item => `
+        function renderGrids() {
+            // Home AI Grid (First 4)
+            const homeAi = aiModels.slice(0, 4).map(item => `
                 <div class="card">
-                    <div class="card-img-container">
-                        <img src="${item.image}" alt="${item.name}">
+                    <div>
+                        <div class="card-img-placeholder">AI Model Preview</div>
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
                     </div>
-                    <div class="card-body">
-                        <div>
-                            <span class="card-tag">${item.category}</span>
-                            <h3>${item.name}</h3>
-                            <p>${item.desc}</p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="price">₹${item.price}</span>
-                            <button class="btn" onclick="openCheckout('${item.name}', ${item.price})">Get Complete Code</button>
-                        </div>
+                    <div class="card-footer">
+                        <span class="price">${item.price}</span>
+                        <a href="#buy" onclick="alert('Instant Source Code Download Unlocked for ${item.name}!')" class="btn">Get Source Code</a>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('homeAiGrid').innerHTML = homeAi;
+
+            // Home System Grid (First 4)
+            const homeSys = systemUtilities.slice(0, 4).map(item => `
+                <div class="card">
+                    <div>
+                        <div class="card-img-placeholder">System Preview</div>
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">${item.price}</span>
+                        <a href="#buy" onclick="alert('Instant Source Code Download Unlocked for ${item.name}!')" class="btn">Get Source Code</a>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('homeSystemGrid').innerHTML = homeSys;
+
+            // Full AI Grid
+            document.getElementById('fullAiGrid').innerHTML = aiModels.map(item => `
+                <div class="card">
+                    <div>
+                        <div class="card-img-placeholder">AI Model #${item.id}</div>
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">${item.price}</span>
+                        <a href="#buy" onclick="alert('Instant Source Code Download Unlocked for ${item.name}!')" class="btn">Get Source Code</a>
+                    </div>
+                </div>
+            `).join('');
+
+            // Full System Grid
+            document.getElementById('fullSystemGrid').innerHTML = systemUtilities.map(item => `
+                <div class="card">
+                    <div>
+                        <div class="card-img-placeholder">Utility #${item.id}</div>
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">${item.price}</span>
+                        <a href="#buy" onclick="alert('Instant Source Code Download Unlocked for ${item.name}!')" class="btn">Get Source Code</a>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Render Other Systems with Image Previews
-        function renderOtherSystems(data) {
-            const grid = document.getElementById('otherGrid');
-            grid.innerHTML = data.map(item => `
-                <div class="card">
-                    <div class="card-img-container">
-                        <img src="${item.image}" alt="${item.name}">
-                    </div>
-                    <div class="card-body">
-                        <div>
-                            <span class="card-tag">${item.category}</span>
-                            <h3>${item.name}</h3>
-                            <p>${item.desc}</p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="price">₹${item.price}</span>
-                            <button class="btn" onclick="openCheckout('${item.name}', ${item.price})">Get Complete Code</button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        renderAIModels(aiModelsData);
-        renderOtherSystems(otherSystemsData);
-
-        // Search Filters
-        function filterAI() {
-            const query = document.getElementById('searchAI').value.toLowerCase();
-            const filtered = aiModelsData.filter(item => item.name.toLowerCase().includes(query) || item.category.toLowerCase().includes(query));
-            renderAIModels(filtered);
-        }
-
-        function filterOther() {
-            const query = document.getElementById('searchOther').value.toLowerCase();
-            const filtered = otherSystemsData.filter(item => item.name.toLowerCase().includes(query) || item.category.toLowerCase().includes(query));
-            renderOtherSystems(filtered);
-        }
-
-        // SPA Page Router
         function switchPage(pageId) {
-            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
             
             document.getElementById('page-' + pageId).classList.add('active');
             document.getElementById('nav-' + pageId).classList.add('active');
-
-            const meta = {
-                'home': ["Next-Gen Software & AI Marketplace", "Access 50+ Enterprise AI Models, 50+ Advanced Systems with Complete Source Code Delivery."],
-                'ai': ["50+ Production AI Models", "Full repository of neural architectures with complete downloadable source files."],
-                'other': ["50+ Systems & Utilities", "Voice control, gesture UI, lie detectors, and professional development utilities."],
-                'custom': ["Custom Software Development", "Direct engineering consultation and bespoke software creation."]
-            };
-
-            document.getElementById('headerTitle').innerText = meta[pageId][0];
-            document.getElementById('headerSubtitle').innerText = meta[pageId][1];
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Checkout & UPI Logic
-        const merchantUPI = "your-actual-upi-id@ybl"; // Replace with your UPI ID
-
-        function openCheckout(productName, price) {
-            document.getElementById('modalTitle').innerText = "Secure Complete Code Checkout";
-            document.getElementById('modalProductInfo').innerText = `${productName} — ₹${price}`;
-            
-            const upiString = `upi://pay?pa=${merchantUPI}&pn=AshaTechHub&am=${price}&cu=INR&tn=SourceCode%20for%20${encodeURIComponent(productName)}`;
-            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(upiString)}`;
-            
-            document.getElementById('dynamicQR').src = qrUrl;
-            document.getElementById('upiIntentText').innerText = `Locked Total: ₹${price}`;
-            document.getElementById('paymentModal').style.display = 'flex';
-            
-            document.getElementById('actionArea').innerHTML = `
-                <a href="${upiString}" class="btn" style="width: 100%; margin-bottom: 0.5rem; background-color: var(--primary);">📱 Pay via UPI App</a>
-                <button class="btn btn-success" style="width: 100%;" onclick="verifyPaymentSimulation()">I Have Paid — Download Complete Code</button>
-            `;
-        }
-
-        function openCustomCheckout() {
+        function handleUpiPayment(e) {
+            e.preventDefault();
             const name = document.getElementById('custName').value;
             const phone = document.getElementById('custPhone').value;
-            const req = document.getElementById('custReq').value;
-
-            if(!name || !phone || !req) {
-                alert("Please fill in all details before proceeding.");
-                return;
-            }
-
-            document.getElementById('modalTitle').innerText = "Custom Software Advance Booking";
-            document.getElementById('modalProductInfo').innerText = `Advance Booking Fee — ₹50 (Client: ${name})`;
+            const desc = document.getElementById('custDesc').value;
             
-            const upiString = `upi://pay?pa=${merchantUPI}&pn=AshaTechHub&am=50&cu=INR&tn=CustomSoftware%20Advance%20${encodeURIComponent(name)}`;
-            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(upiString)}`;
+            // Dynamic UPI Intent Generation for ₹50
+            const upiId = "merchant@upi"; // Replace with actual merchant UPI ID later
+            const upiUrl = `upi://pay?pa=${upiId}&am=50.00&cu=INR&tn=CustomSoftwareBooking_${encodeURIComponent(name)}`;
             
-            document.getElementById('dynamicQR').src = qrUrl;
-            document.getElementById('upiIntentText').innerText = `Advance Fee: ₹50`;
-            document.getElementById('paymentModal').style.display = 'flex';
-
-            document.getElementById('actionArea').innerHTML = `
-                <a href="${upiString}" class="btn btn-warning" style="width: 100%; margin-bottom: 0.5rem; color:#000;">📱 Pay ₹50 Advance via UPI</a>
-                <button class="btn btn-success" style="width: 100%;" onclick="verifyCustomPayment('${name}', '${phone}')">I Have Paid ₹50 Advance</button>
-            `;
+            alert(`Redirecting to UPI Payment App for ₹50 Advance Booking...\n\nName: ${name}\nPhone: ${phone}`);
+            window.location.href = upiUrl;
         }
 
-        function closeCheckout() {
-            document.getElementById('paymentModal').style.display = 'none';
+        function filterAllContent() {
+            const query = document.getElementById('globalSearch').value.toLowerCase();
+            // Basic filtering hook across home elements
         }
 
-        function verifyPaymentSimulation() {
-            document.getElementById('actionArea').innerHTML = `
-                <div style="background: rgba(34,197,94,0.15); border: 1px solid var(--success); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; color: var(--success); font-weight: 600;">
-                    ✓ Payment Verified & Confirmed
+        function filterAiModels() {
+            const query = document.getElementById('aiSearch').value.toLowerCase();
+            const filtered = aiModels.filter(m => m.name.toLowerCase().includes(query) || m.desc.toLowerCase().includes(query));
+            document.getElementById('fullAiGrid').innerHTML = filtered.map(item => `
+                <div class="card">
+                    <div>
+                        <div class="card-img-placeholder">AI Model #${item.id}</div>
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">${item.price}</span>
+                        <a href="#buy" onclick="alert('Instant Source Code Download Unlocked for ${item.name}!')" class="btn">Get Source Code</a>
+                    </div>
                 </div>
-                <button class="btn btn-success" style="width: 100%;" onclick="alert('📥 Downloading complete source code package (.zip) with documentation.'); closeCheckout();">📥 Download Complete Source Code</button>
-            `;
+            `).join('');
         }
 
-        function verifyCustomPayment(name, phone) {
-            document.getElementById('actionArea').innerHTML = `
-                <div style="background: rgba(34,197,94,0.15); border: 1px solid var(--success); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; color: var(--success); font-weight: 600;">
-                    ✓ ₹50 Advance Received Successfully!
+        function filterSystemModels() {
+            const query = document.getElementById('systemSearch').value.toLowerCase();
+            const filtered = systemUtilities.filter(m => m.name.toLowerCase().includes(query) || m.desc.toLowerCase().includes(query));
+            document.getElementById('fullSystemGrid').innerHTML = filtered.map(item => `
+                <div class="card">
+                    <div>
+                        <div class="card-img-placeholder">Utility #${item.id}</div>
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">${item.price}</span>
+                        <a href="#buy" onclick="alert('Instant Source Code Download Unlocked for ${item.name}!')" class="btn">Get Source Code</a>
+                    </div>
                 </div>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
-                    Thank you ${name}! Your requirements have been logged. Please contact us directly or wait for our call at <b>${phone}</b> to finalize your project pricing and delivery timeline.
-                </p>
-                <button class="btn" style="width: 100%;" onclick="closeCheckout(); switchPage('home');">Return to Dashboard</button>
-            `;
+            `).join('');
         }
+
+        window.onload = renderGrids;
     </script>
 </body>
 </html>
