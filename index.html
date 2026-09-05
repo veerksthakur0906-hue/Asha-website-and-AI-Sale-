@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="uXGGYhGSxlWbCNAzfm-EgNxjI5ocLeOuEd7pu_9ZGZQ" />
-    <title>AshaTech Enterprise | Global Software & AI Solutions</title>
+    <title>AshaTech Enterprise | Home</title>
     <style>
         :root {
             --bg-color: #05050a;
@@ -15,394 +15,89 @@
             --text-muted: #94a3b8;
             --border-color: #1e293b;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        header {
-            background: rgba(15, 16, 25, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            cursor: pointer;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        nav ul li a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-            cursor: pointer;
-        }
-
-        nav ul li a:hover, nav ul li a.active {
-            color: var(--accent-color);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem 5%;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 4rem 1rem;
-            background: radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -0.025em;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 2rem auto;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            font-weight: 700;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 1rem;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
-            box-shadow: 0 10px 30px var(--accent-glow);
-        }
-
-        .card-img-placeholder {
-            width: 100%;
-            height: 160px;
-            background: linear-gradient(45deg, #1e293b, #0f1019);
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-weight: 600;
-            border: 1px dashed var(--border-color);
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .price {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #38bdf8;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #6366f1, #4f46e5);
-            color: white;
-            border: none;
-            padding: 0.7rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        .page-view {
-            display: none;
-        }
-
-        .page-view.active {
-            display: block;
-        }
-
-        .custom-form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: white;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .form-control:focus {
-            border-color: var(--accent-color);
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .upi-notice {
-            background: rgba(99, 102, 241, 0.1);
-            border-left: 4px solid var(--accent-color);
-            padding: 1rem;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            margin-top: 4rem;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; }
+        header { background: rgba(15, 16, 25, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; }
+        .logo { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav ul li a { color: var(--text-muted); text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+        nav ul li a:hover, nav ul li a.active { color: var(--accent-color); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem 5%; }
+        .hero { text-align: center; padding: 4rem 1rem; background: radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%); }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
+        .hero p { color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem auto; }
+        .section-title { font-size: 2rem; margin-bottom: 2rem; font-weight: 700; border-left: 4px solid var(--accent-color); padding-left: 1rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent-color); box-shadow: 0 10px 30px var(--accent-glow); }
+        .card-img-placeholder { width: 100%; height: 160px; background: linear-gradient(45deg, #1e293b, #0f1019); border-radius: 10px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-weight: 600; border: 1px dashed var(--border-color); }
+        .card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; }
+        .price { font-size: 1.25rem; font-weight: 700; color: #38bdf8; }
+        .btn { background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; border: none; padding: 0.7rem 1.2rem; border-radius: 8px; font-weight: 600; cursor: pointer; text-decoration: none; }
+        .btn:hover { opacity: 0.9; }
+        footer { text-align: center; padding: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); margin-top: 4rem; }
     </style>
 </head>
 <body>
-
     <header>
-        <div class="logo" onclick="switchPage('home')">AshaTech Enterprise</div>
+        <a href="index.html" class="logo">AshaTech Enterprise</a>
         <nav>
             <ul>
-                <li><a onclick="switchPage('home')" id="nav-home" class="active">Home</a></li>
-                <li><a onclick="switchPage('products')" id="nav-products">Products & AI</a></li>
-                <li><a onclick="switchPage('custom')" id="nav-custom">Custom Software (₹50)</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="products.html">Products & AI</a></li>
+                <li><a href="custom.html">Custom Software (₹100)</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HOME PAGE -->
-    <div id="page-home" class="page-view active">
-        <section class="hero">
-            <h1>Enterprise Grade AI & Business Web Solutions</h1>
-            <p>Explore elite AI models and professional ready-to-use business website templates with 100% complete source code delivery.</p>
-        </section>
+    <section class="hero">
+        <h1>Enterprise Grade AI & Business Web Solutions</h1>
+        <p>Explore elite AI models and professional ready-to-use business website templates with instant source code access.</p>
+    </section>
 
-        <div class="container">
-            <h2 class="section-title">Featured Solutions</h2>
-            <div class="grid" id="homeGrid"></div>
-        </div>
-    </div>
-
-    <!-- PRODUCTS & AI PAGE -->
-    <div id="page-products" class="page-view">
-        <div class="container" style="padding-top: 3rem;">
-            <h2 class="section-title">All Exclusive Products & AI Models</h2>
-            <div class="grid" id="fullGrid"></div>
-        </div>
-    </div>
-
-    <!-- CUSTOM SOFTWARE BOOKING PAGE -->
-    <div id="page-custom" class="page-view">
-        <div class="container" style="padding-top: 3rem;">
-            <div class="custom-form-container">
-                <h2 style="margin-bottom: 1.5rem; text-align: center;">Book Custom Software Development</h2>
-                <div class="upi-notice">
-                    <strong>Process:</strong> Fill out your requirements below and pay a nominal <strong>₹50 Advance Fee</strong> via UPI. Our team will review and contact you directly to finalize.
+    <div class="container">
+        <h2 class="section-title">Featured Solutions</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <div class="card-img-placeholder">Advanced AI Model</div>
+                    <h3>Jarvis AI Core</h3>
+                    <p>The ultimate flagship artificial intelligence core engineered for supreme multitasking, automation, and deep cognitive processing.</p>
                 </div>
-                <form id="customBookingForm" onsubmit="handleUpiPayment(event)">
-                    <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" id="custName" class="form-control" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone Number / WhatsApp</label>
-                        <input type="tel" id="custPhone" class="form-control" placeholder="10-digit mobile number" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Project Requirement / Description</label>
-                        <textarea id="custDesc" class="form-control" placeholder="Describe the software, website, or tool you want us to build..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%; padding: 1rem; font-size: 1.1rem;">Pay ₹50 Advance & Submit Booking</button>
-                </form>
+                <div class="card-footer">
+                    <span class="price">₹1,000</span>
+                    <a href="products.html" class="btn">Get Source Code</a>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <div class="card-img-placeholder">Business Website</div>
+                    <h3>Elite Dental Clinic Website</h3>
+                    <p>Modern, responsive medical website template featuring appointment booking layouts, patient care modules, and clean aesthetics.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="price">₹200</span>
+                    <a href="products.html" class="btn">Get Source Code</a>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <div class="card-img-placeholder">Business Website</div>
+                    <h3>Aroma Brew Coffee Shop</h3>
+                    <p>Warm, elegant cafe website layout designed for online menu showcase, table reservations, and customer reviews.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="price">₹100</span>
+                    <a href="products.html" class="btn">Get Source Code</a>
+                </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 AshaTech Enterprise Solutions. All Rights Reserved. Instant Source Code Access.</p>
+        <p>&copy; 2026 AshaTech Enterprise Solutions. All Rights Reserved.</p>
     </footer>
-
-    <script>
-        // Exact 6 products as requested
-        const products = [
-            {
-                id: 1,
-                name: "Jarvis AI Core",
-                category: "Advanced AI Model",
-                desc: "The ultimate flagship artificial intelligence core engineered for supreme multitasking, automation, and deep cognitive processing.",
-                price: "₹4,999"
-            },
-            {
-                id: 2,
-                name: "Friday AI Assistant",
-                category: "Smart Assistant AI",
-                desc: "High-speed personal tactical assistant built for seamless workflow management, smart scheduling, and data analysis.",
-                price: "₹2,999"
-            },
-            {
-                id: 3,
-                name: "Ultron Neural System",
-                category: "Neural Network AI",
-                desc: "Autonomous defense and automated logic computation model designed for high-load server environments.",
-                price: "₹1,499"
-            },
-            {
-                id: 4,
-                name: "Elite Dental Clinic Website",
-                category: "Business Website",
-                desc: "Modern, responsive medical website template featuring appointment booking layouts, patient care modules, and clean aesthetics.",
-                price: "₹999"
-            },
-            {
-                id: 5,
-                name: "PowerFit Gym & Fitness Hub",
-                category: "Business Website",
-                desc: "High-energy fitness studio and gym platform template complete with trainer schedules, membership plans, and workout logs.",
-                price: "₹999"
-            },
-            {
-                id: 6,
-                name: "Aroma Brew Coffee Shop",
-                category: "Business Website",
-                desc: "Warm, elegant cafe website layout designed for online menu showcase, table reservations, and customer reviews.",
-                price: "₹999"
-            }
-        ];
-
-        function renderGrids() {
-            const htmlContent = products.map(item => `
-                <div class="card">
-                    <div>
-                        <div class="card-img-placeholder">${item.category}</div>
-                        <h3>${item.name}</h3>
-                        <p>${item.desc}</p>
-                    </div>
-                    <div class="card-footer">
-                        <span class="price">${item.price}</span>
-                        <a href="#buy" onclick="alert('Instant Source Code Download Unlocked for ${item.name}!')" class="btn">Get Source Code</a>
-                    </div>
-                </div>
-            `).join('');
-
-            document.getElementById('homeGrid').innerHTML = htmlContent;
-            document.getElementById('fullGrid').innerHTML = htmlContent;
-        }
-
-        function switchPage(pageId) {
-            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
-            
-            document.getElementById('page-' + pageId).classList.add('active');
-            document.getElementById('nav-' + pageId).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function handleUpiPayment(e) {
-            e.preventDefault();
-            const name = document.getElementById('custName').value;
-            const phone = document.getElementById('custPhone').value;
-            
-            const upiId = "merchant@upi";
-            const upiUrl = `upi://pay?pa=${upiId}&am=50.00&cu=INR&tn=CustomSoftwareBooking_${encodeURIComponent(name)}`;
-            
-            alert(`Redirecting to UPI Payment App for ₹50 Advance Booking...\n\nName: ${name}\nPhone: ${phone}`);
-            window.location.href = upiUrl;
-        }
-
-        window.onload = renderGrids;
-    </script>
 </body>
 </html>
