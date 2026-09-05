@@ -478,11 +478,14 @@ input:focus-visible {
     <div class="bg-white p-3 w-fit mx-auto mb-4">
       <img id="modal-qr-img" src="" alt="Payment QR code" width="180" height="180" />
     </div>
+    <p class="font-mono text-[10px] text-dim text-center mb-4">Amount is fixed by the order and cannot be changed here.</p>
+    <a id="modal-upi-link" href="#" class="btn w-full mb-3">Open in a UPI app</a>
     <p id="modal-status" class="status-pending text-sm text-center mb-4 min-h-[2.5rem]">Scan the code, or use any UPI app, then confirm below.</p>
     <button id="verify-btn" onclick="verifyPayment()" class="btn btn-primary w-full">I've completed the payment</button>
   </div>
 </div>
 
+<script src="vendor/qrcode.min.js"></script>
 <script src="app.js"></script>
 <script>
   const featuredProducts = [
@@ -491,24 +494,27 @@ input:focus-visible {
     { id: "web-03", name: "Orbit Portfolio Template", price: 349, tag: "Websites", href: "websites.html" },
   ];
 
+  registerProducts(featuredProducts);
+
   function renderFeatured() {
     const grid = document.getElementById("featured-grid");
     grid.innerHTML = featuredProducts.map(p => `
       <div class="bracket-panel flex flex-col">
-        <p class="font-mono text-xs text-violet mb-2">${p.tag}</p>
-        <h3 class="font-display text-lg mb-2">${p.name}</h3>
+        <p class="font-mono text-xs text-violet mb-2">${escapeHtml(p.tag)}</p>
+        <h3 class="font-display text-lg mb-2">${escapeHtml(p.name)}</h3>
         <p class="price-tag mb-4">₹${p.price}</p>
         <div class="mt-auto flex items-center justify-between gap-3">
           <span id="locked-${p.id}" class="badge-locked">LOCKED</span>
           <span id="unlocked-${p.id}" class="badge-locked badge-unlocked hidden">UNLOCKED</span>
           <div class="flex gap-2">
-            <button id="pay-${p.id}" class="btn btn-pay" onclick='openPaymentModal(${JSON.stringify({id:p.id,name:p.name,price:p.price})})'>Pay ₹${p.price}</button>
-            <button id="download-${p.id}" class="btn btn-success hidden" disabled onclick="downloadFile('${p.id}', '${p.name}')">Download File</button>
+            <button id="pay-${p.id}" class="btn btn-pay" data-pay="${p.id}">Pay ₹${p.price}</button>
+            <button id="download-${p.id}" class="btn btn-success hidden" disabled data-download="${p.id}">Download File</button>
           </div>
         </div>
         <a href="${p.href}" class="text-xs text-dim hover:text-cyan mt-3 inline-block">View category →</a>
       </div>
     `).join("");
+    wirePaymentButtons(grid);
     refreshAllLocks(featuredProducts.map(p => p.id));
   }
 

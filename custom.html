@@ -479,13 +479,20 @@ input:focus-visible {
     <div class="bg-white p-3 w-fit mx-auto mb-4">
       <img id="modal-qr-img" src="" alt="Payment QR code" width="180" height="180" />
     </div>
+    <p class="font-mono text-[10px] text-dim text-center mb-4">Amount is fixed by the order and cannot be changed here.</p>
+    <a id="modal-upi-link" href="#" class="btn w-full mb-3">Open in a UPI app</a>
     <p id="modal-status" class="status-pending text-sm text-center mb-4 min-h-[2.5rem]">Scan the code, or use any UPI app, then confirm below.</p>
     <button id="verify-btn" onclick="verifyPayment()" class="btn btn-primary w-full">I've completed the payment</button>
   </div>
 </div>
 
+<script src="vendor/qrcode.min.js"></script>
 <script src="app.js"></script>
 <script>
+  const ACTIVE_ORDER_KEY = "nextech_custom_active_order";
+  const ADVANCE_AMOUNT = 50;
+  const FINAL_AMOUNT = 50;
+
   let activeOrder = null; // { id, name }
 
   const nameInput = document.getElementById("software-name");
@@ -494,6 +501,94 @@ input:focus-visible {
   const emptyState = document.getElementById("empty-state");
   const orderPanel = document.getElementById("order-panel");
   const previewQr = document.getElementById("preview-qr-img");
+  const payAdvanceBtn = document.getElementById("pay-advance-btn");
+  const payFinalBtn = document.getElementById("pay-final-btn");
+
+  function advanceId(order) { return `${order.id}-advance`; }
+  function finalId(order) { return `${order.id}-final`; }
+
+  /** (Re)registers this order's two payment stages so their price is
+   *  always sourced from ADVANCE_AMOUNT/FINAL_AMOUNT above, never from
+   *  anything a click handler passes in. */
+  function registerOrderStages(order) {
+    registerProduct({ id: advanceId(order), name: `${order.name} — Advance Payment`, price: ADVANCE_AMOUNT });
+    registerProduct({ id: finalId(order), name: `${order.name} — Final Payment`, price: FINAL_AMOUNT });
+  }
+
+  function saveActiveOrder(order) {
+    if (order) {
+      localStorage.setItem(ACTIVE_ORDER_KEY, JSON.stringify(order));
+    } else {
+      localStorage.removeItem(ACTIVE_ORDER_KEY);
+    }
+  }
+
+  function loadActiveOrder() {
+    try {
+      const raw = localStorage.getItem(ACTIVE_ORDER_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.id && parsed.name) return parsed;
+    } catch (err) {
+      console.error("Could not restore saved order:", err);
+    }
+    return null;
+  }
+
+  /** Rebuilds the whole stage/download UI from localStorage's paid flags —
+   *  this is what makes progress survive a page refresh instead of getting
+   *  silently wiped while the underlying payment state stayed valid. */
+  function syncOrderUi(order) {
+    document.getElementById("order-id").textContent = order.id;
+    document.getElementById("order-name").textContent = order.name;
+    previewQr.src = generateQrDataUrl(`Order ${order.id}: ${order.name}`);
+    previewQr.alt = `Order QR preview for ${order.name}`;
+
+    const advancePaid = isPaid(advanceId(order));
+    const finalPaid = isPaid(finalId(order));
+
+    const stepAdvance = document.getElementById("step-advance");
+    const stepFinal = document.getElementById("step-final");
+    const advanceDoneTag = document.getElementById("advance-done-tag");
+    const finalDoneTag = document.getElementById("final-done-tag");
+
+    stepAdvance.classList.remove("is-done", "is-active");
+    stepFinal.classList.remove("is-done", "is-active");
+    advanceDoneTag.classList.toggle("hidden", !advancePaid);
+    finalDoneTag.classList.toggle("hidden", !finalPaid);
+
+    if (!advancePaid) {
+      stepAdvance.classList.add("is-active");
+      payAdvanceBtn.disabled = false;
+      payAdvanceBtn.classList.remove("hidden");
+      payFinalBtn.disabled = true;
+      payFinalBtn.classList.add("hidden");
+    } else {
+      stepAdvance.classList.add("is-done");
+      payAdvanceBtn.classList.add("hidden");
+      if (!finalPaid) {
+        stepFinal.classList.add("is-active");
+        payFinalBtn.disabled = false;
+        payFinalBtn.classList.remove("hidden");
+      } else {
+        stepFinal.classList.add("is-done");
+        payFinalBtn.classList.add("hidden");
+      }
+    }
+
+    setOrderDownloadState(finalPaid);
+    emptyState.classList.add("hidden");
+    orderPanel.classList.remove("hidden");
+  }
+
+  // ---- Restore an in-progress order after a page reload/navigation ----
+  const restored = loadActiveOrder();
+  if (restored) {
+    activeOrder = restored;
+    nameInput.value = restored.name;
+    registerOrderStages(activeOrder);
+    syncOrderUi(activeOrder);
+  }
 
   // ---- Live QR preview as the user types (debounced) ----
   let debounceTimer = null;
@@ -501,15 +596,21 @@ input:focus-visible {
     clearTimeout(debounceTimer);
     const value = nameInput.value.trim();
     if (value.length < 3) {
-      emptyState.classList.remove("hidden");
-      orderPanel.classList.add("hidden");
+      if (!activeOrder) {
+        emptyState.classList.remove("hidden");
+        orderPanel.classList.add("hidden");
+      }
       return;
     }
+    // Only show the "not yet created" live preview while there's no locked-in
+    // order for this browser session; once an order exists, this panel is
+    // reserved for its real id/QR/stage state.
+    if (activeOrder) return;
     debounceTimer = setTimeout(() => {
       emptyState.classList.add("hidden");
       orderPanel.classList.remove("hidden");
       const previewString = `Preview only — software request: ${value}`;
-      previewQr.src = QR_API_BASE + encodeURIComponent(previewString);
+      previewQr.src = generateQrDataUrl(previewString);
       previewQr.alt = `Preview QR for ${value}`;
       document.getElementById("order-name").textContent = value;
       document.getElementById("order-id").textContent = "Not yet created — click \"Create Order\"";
@@ -524,69 +625,32 @@ input:focus-visible {
 
     const orderId = `CS-${Date.now()}`;
     activeOrder = { id: orderId, name };
-
-    document.getElementById("order-id").textContent = orderId;
-    document.getElementById("order-name").textContent = name;
-
-    // Reset any previous stage visuals for a fresh order id
-    document.getElementById("step-advance").classList.remove("is-done", "is-active");
-    document.getElementById("step-advance").classList.add("is-active");
-    document.getElementById("step-final").classList.remove("is-done", "is-active");
-    document.getElementById("advance-done-tag").classList.add("hidden");
-    document.getElementById("final-done-tag").classList.add("hidden");
-
-    const payAdvanceBtn = document.getElementById("pay-advance-btn");
-    const payFinalBtn = document.getElementById("pay-final-btn");
-    payAdvanceBtn.disabled = false;
-    payAdvanceBtn.classList.remove("hidden");
-    payFinalBtn.disabled = true;
-    payFinalBtn.classList.add("hidden");
-
-    // Fresh order => download always starts locked, even if a previous
-    // order in this session was already fully paid and unlocked.
-    setOrderDownloadState(false);
-
-    emptyState.classList.add("hidden");
-    orderPanel.classList.remove("hidden");
+    registerOrderStages(activeOrder);
+    saveActiveOrder(activeOrder);
+    syncOrderUi(activeOrder);
   });
 
   // ---- Stage 1: Advance payment ----
-  document.getElementById("pay-advance-btn").addEventListener("click", () => {
+  payAdvanceBtn.addEventListener("click", () => {
     if (!activeOrder) return;
-    openPaymentModal(
-      { id: `${activeOrder.id}-advance`, name: `${activeOrder.name} — Advance Payment`, price: 50 },
-      () => {
-        document.getElementById("step-advance").classList.remove("is-active");
-        document.getElementById("step-advance").classList.add("is-done");
-        document.getElementById("advance-done-tag").classList.remove("hidden");
-
-        const payAdvanceBtn = document.getElementById("pay-advance-btn");
-        payAdvanceBtn.classList.add("hidden");
-
-        const payFinalBtn = document.getElementById("pay-final-btn");
-        payFinalBtn.disabled = false;
-        payFinalBtn.classList.remove("hidden");
-        document.getElementById("step-final").classList.add("is-active");
-      }
-    );
+    openPaymentModal(advanceId(activeOrder), () => {
+      syncOrderUi(activeOrder);
+    });
   });
 
   // ---- Stage 2: Final payment ----
-  document.getElementById("pay-final-btn").addEventListener("click", () => {
+  payFinalBtn.addEventListener("click", () => {
     if (!activeOrder) return;
-    openPaymentModal(
-      { id: `${activeOrder.id}-final`, name: `${activeOrder.name} — Final Payment`, price: 50 },
-      () => {
-        document.getElementById("step-final").classList.remove("is-active");
-        document.getElementById("step-final").classList.add("is-done");
-        document.getElementById("final-done-tag").classList.remove("hidden");
-        document.getElementById("pay-final-btn").classList.add("hidden");
+    openPaymentModal(finalId(activeOrder), () => {
+      // Both stages complete — persist and unlock the actual download.
+      markPaid(activeOrder.id);
+      syncOrderUi(activeOrder);
+    });
+  });
 
-        // Both stages complete — persist and unlock the actual download.
-        markPaid(activeOrder.id);
-        setOrderDownloadState(true);
-      }
-    );
+  document.getElementById("download-order").addEventListener("click", () => {
+    if (!activeOrder) return;
+    downloadFile(activeOrder.id, activeOrder.name);
   });
 
   /**
@@ -602,13 +666,11 @@ input:focus-visible {
     if (unlocked && activeOrder) {
       downloadBtn.classList.remove("hidden");
       downloadBtn.disabled = false;
-      downloadBtn.onclick = () => downloadFile(activeOrder.id, activeOrder.name);
       lockedTag.classList.add("hidden");
       unlockedTag.classList.remove("hidden");
     } else {
       downloadBtn.classList.add("hidden");
       downloadBtn.disabled = true;
-      downloadBtn.onclick = null;
       lockedTag.classList.remove("hidden");
       unlockedTag.classList.add("hidden");
     }
